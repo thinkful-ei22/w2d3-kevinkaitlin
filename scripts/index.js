@@ -1,5 +1,5 @@
 'use strict';
-/* global shoppingList, store, Item */
+/* global shoppingList, store, api, Item */
 /*eslint-env jquery*/
 
 $(document).ready(function() {
@@ -9,9 +9,9 @@ $(document).ready(function() {
 
 store.items.push(Item.create('apples'));
 
-$.getJSON('https://thinkful-list-api.herokuapp.com/KaitlinKevin/items', (response) => {
-  console.log('api response:', response);
-});
+// $.getJSON('https://thinkful-list-api.herokuapp.com/KaitlinKevin/items', (response) => {
+//   console.log('api response:', response);
+// });
 
 // api.getItems(api.BASE_URL, function(data) {
 //   console.log(data);
@@ -21,8 +21,8 @@ $.getJSON('https://thinkful-list-api.herokuapp.com/KaitlinKevin/items', (respons
 
 // console.log(api.BASE_URL);
 
-// api.createItem('pears', (newItem) => {
-//   api.getItems((items) => {
-//     console.log(items);
-//   });
-// });
+api.createItem('pears', (newItem) => {
+  api.getItems((items) => {
+    console.log(items);
+  });
+});
