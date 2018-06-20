@@ -9,17 +9,17 @@ $(document).ready(function() {
 
 store.items.push(Item.create('apples'));
 
-$.getJSON('https://thinkful-list-api.herokuapp.com/ei-student/items', (response) => {
+$.getJSON('https://thinkful-list-api.herokuapp.com/KaitlinKevin/items', (response) => {
   console.log('api response:', response);
 });
 
-api.getItems(api.BASE_URL, function(data) {
-  console.log(data);
-}, function(err){
-  console.error(err.status);
-});
+// api.getItems(api.BASE_URL, function(data) {
+//   console.log(data);
+// }, function(err){
+//   console.error(err.status);
+// });
 
-console.log(api.BASE_URL);
+// console.log(api.BASE_URL);
 
 // api.createItem('pears', (newItem) => {
 //   api.getItems((items) => {

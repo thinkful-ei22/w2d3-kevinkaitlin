@@ -2,6 +2,22 @@
 /*eslint-env jquery*/
 
 const api = (function () {
+  const createItem = (name, function (newItem) {
+    const BASE_URL = 'https://thinkful-list-api.herokuapp.om/KaitlinKevin';
+    const createItems = function(callback) {
+      $.ajax(
+        {
+          method: 'POST',
+          url: `${BASE_URL}/items/`,
+          contentType: 'application/json',
+          data: JSON.stringify({name: newItem}),
+          success: callback,
+        }
+      );
+      return {createItems};
+    };
+    
+  }());
   const BASE_URL = 'https://thinkful-list-api.herokuapp.om/KaitlinKevin';
   const getItems = function(base, callback, error) {
     $.ajax(
@@ -16,22 +32,7 @@ const api = (function () {
   return {getItems};
 }());
 
-const createItem = (function (newItem) {
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.om/KaitlinKevin';
-  const createItems = function(callback) {
-    $.ajax(
-      {
-        method: 'POST',
-        url: `${BASE_URL}/items/`,
-        contentType: 'application/json',
-        data: JSON.stringify({name: newItem}),
-        success: callback,
-      }
-    );
-    return {createItems};
-  };
-  
-}());
+
 
 // const getItems = (function(item){
 //   try {
