@@ -1,6 +1,5 @@
-'use strict'; 
-
-/* global store, api */
+'use strict';
+/* global store */
 
 // eslint-disable-next-line no-unused-vars
 const shoppingList = (function(){
@@ -62,10 +61,8 @@ const shoppingList = (function(){
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
       $('.js-shopping-list-entry').val('');
-      api.createItem(newItemName, function(newItem) {
-        store.addItem(newItem);
-        render();
-      });
+      store.addItem(newItemName);
+      render();
     });
   }
   
@@ -78,8 +75,13 @@ const shoppingList = (function(){
   function handleItemCheckClicked() {
     $('.js-shopping-list').on('click', '.js-item-toggle', event => {
       const id = getItemIdFromElement(event.currentTarget);
-      store.findAndToggleChecked(id);
-      render();
+      const foundItem = store.findById(id);
+      Object.assign(foundItem, {checked: !foundItem.checked});
+      // delete foundItem.id;
+      api.updateItem(id, {checked: !foundItem.checked}, function(){
+        store.findAndUpdate(id, foundItem);
+        render();
+      });
     });
   }
   
@@ -100,11 +102,14 @@ const shoppingList = (function(){
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
-      store.findAndUpdate(id, itemName);
-      render();
+      
+
+      api.updateItem(id, itemName, function(){
+        store.findAndUpdate(id, itemName);
+        render();
+      });
     });
   }
-  
   function handleToggleFilterClick() {
     $('.js-filter-checked').click(() => {
       store.toggleCheckedFilter();

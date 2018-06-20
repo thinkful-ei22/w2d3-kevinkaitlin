@@ -7,10 +7,10 @@ const api = (function () {
   const getItems = function(callback){
     $.getJSON(`${BASE_URL}/items`, callback);
 
-    const item = store.items[0];
-    console.log('current name: ' + item.name);
-    store.findAndUpdate(item.id, { name: 'foobar' });
-    console.log('new name: ' + item.name);
+    // const item = store.items[0];
+    // console.log('current name: ' + item.name);
+    // store.findAndUpdate(item.id, { name: 'foobar' });
+    // console.log('new name: ' + item.name);
   };
 
   
@@ -26,6 +26,7 @@ const api = (function () {
   };
 
   const updateItem = function(id, updateData, callback) {
+    console.log(updateData, id);
     $.ajax({
       url: `${BASE_URL}/items/${id}`,
       method: 'PATCH',
