@@ -5,24 +5,20 @@
 $(document).ready(function() {
   shoppingList.bindEventListeners();
   shoppingList.render();
+
+  api.getItems((items) => {
+    items.forEach((item) => store.addItem(item));
+    shoppingList.render();
+  });
+
 });
 
 store.items.push(Item.create('apples'));
 
-// $.getJSON('https://thinkful-list-api.herokuapp.com/KaitlinKevin/items', (response) => {
-//   console.log('api response:', response);
-// });
+api.getItems((items) => {
+  const item = items[0];
 
-// api.getItems(api.BASE_URL, function(data) {
-//   console.log(data);
-// }, function(err){
-//   console.error(err.status);
-// });
-
-// console.log(api.BASE_URL);
-
-api.createItem('pears', (newItem) => {
-  api.getItems((items) => {
-    console.log(items);
+  api.updateItem(item.id, { name: 'foobar' }, () => {
+    console.log('updated!');
   });
 });
