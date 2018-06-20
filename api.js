@@ -18,7 +18,7 @@ const api = (function () {
 
 const createItem = (function (newItem) {
   const BASE_URL = 'https://thinkful-list-api.herokuapp.om/KaitlinKevin';
-  const getItems = function(callback) {
+  const createItems = function(callback) {
     $.ajax(
       {
         method: 'POST',
@@ -28,6 +28,16 @@ const createItem = (function (newItem) {
         success: callback,
       }
     );
+    return {createItems};
   };
-  return {getItems};
+  
 }());
+
+// const getItems = (function(item){
+//   try {
+//     Item.validateName(name);
+//     this.items.push(item);
+//   } catch(e) {
+//     console.log(e.message);
+//   }
+// }());
