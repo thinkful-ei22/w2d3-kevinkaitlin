@@ -1,6 +1,6 @@
 'use strict';
-/* global shoppingList, store */
-/* global Item */
+/* global shoppingList, store, Item */
+/*eslint-env jquery*/
 
 $(document).ready(function() {
   shoppingList.bindEventListeners();
@@ -13,8 +13,16 @@ $.getJSON('https://thinkful-list-api.herokuapp.com/ei-student/items', (response)
   console.log('api response:', response);
 });
 
-api.getItems(function(data) {
-  console.log(data);
-});
+// api.getItems(api.BASE_URL, function(data) {
+//   console.log(data);
+// }, function(err){
+//   console.error(err.status);
+// });
 
-console.log(api.BASE_URL);
+// console.log(api.BASE_URL);
+
+api.createItem('pears', (newItem) => {
+  api.getItems((items) => {
+    console.log(items);
+  });
+});
